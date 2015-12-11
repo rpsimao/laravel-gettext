@@ -83,11 +83,12 @@ class Gettext
      */
     public function setLocale($locale)
     {
-        if (!$this->isLocaleSupported($locale)) {
+        //Remove from master until I figure this out
+        /*if (!$this->isLocaleSupported($locale)) {
             throw new Exceptions\LocaleNotSupportedException(
                 sprintf('Locale %s is not supported', $locale)
             );
-        }
+        }*/
 
         try {
             $gettextLocale = $locale . "." . $this->encoding;
