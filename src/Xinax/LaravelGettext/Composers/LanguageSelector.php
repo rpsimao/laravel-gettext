@@ -84,7 +84,7 @@ class LanguageSelector
             $link = '<a href="/lang/' . $locale . '" class="' . $locale . '">' . $localeLabel . '</a>';
 
             if ($locale == $currentLocale) {
-                $link = '<strong class="active ' . $locale . '">' . $localeLabel . '</strong>';
+                $link = '<span class="active ' . $locale . '">' . $localeLabel . '</span>';
             }
 
             $html .= '<li>' . $link . '</li>';
