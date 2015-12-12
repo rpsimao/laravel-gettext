@@ -79,15 +79,9 @@ class LanguageSelector
             if (array_key_exists($locale, $this->labels)) {
                 $localeLabel = $this->labels[$locale];
             }
-
-
             $link = '<a href="/lang/' . $locale . '" class="' . $locale . '">' . $localeLabel . '</a>';
-
-            if ($locale == $currentLocale) {
-                $link = '<span class="active ' . $locale . '">' . $localeLabel . '</span>';
-            }
-
-            $html .= '<li>' . $link . '</li>';
+           
+            $html .= '<li><i class="fa fa-language"> ' . $link . '</li>';
         }
 
 
