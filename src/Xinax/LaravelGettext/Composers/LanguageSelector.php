@@ -55,10 +55,10 @@ class LanguageSelector
 
         switch ($twBoot) {
             case true:
-                $this->renderBootstrap($locales, $currentLocale);
+                return $this->renderBootstrap($locales, $currentLocale);
                 break;
             default:
-                $this->render($locales, $currentLocale);
+                return $this->render($locales, $currentLocale);
         }
 
 
