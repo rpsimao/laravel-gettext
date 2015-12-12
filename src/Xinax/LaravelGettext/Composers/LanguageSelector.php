@@ -45,13 +45,65 @@ class LanguageSelector
      * Renders the language selector
      * @return string
      */
-    public function render()
+    public function render($twBoot = false)
     {
         /** @var array $locales */
         $locales = Config::get('laravel-gettext.supported-locales');
 
         /** @var string $currentLocale */
         $currentLocale = $this->gettext->getLocale();
+
+        switch ($twBoot) {
+            case true:
+                $this->renderBootstrap($locales, $currentLocale);
+                break;
+            default:
+                $this->render($locales, $currentLocale);
+        }
+
+
+    }
+
+    /**
+     * Render Method for Twitter Bootstrap
+     * @return string
+     */
+    protected function renderBootstrap($locales, $currentLocale)
+    {
+        $html = '';
+
+        foreach ($locales as $locale) {
+            $localeLabel = $locale;
+
+            // Check if label exists
+            if (array_key_exists($locale, $this->labels)) {
+                $localeLabel = $this->labels[$locale];
+            }
+
+
+            $link = '<a href="/lang/' . $locale . '" class="' . $locale . '">' . $localeLabel . '</a>';
+
+            if ($locale == $currentLocale) {
+                $link = '<strong class="active ' . $locale . '">' . $localeLabel . '</strong>';
+            }
+
+            $html .= '<li>' . $link . '</li>';
+        }
+
+
+        return $html;
+
+
+    }
+
+    /**
+     * Default Render
+     * @return string
+     */
+
+    protected function renderDefault($locales, $currentLocale)
+    {
+
 
         $html = '<ul class="language-selector">';
 
@@ -76,6 +128,7 @@ class LanguageSelector
         $html .= '</ul>';
 
         return $html;
+
     }
 
     /**
